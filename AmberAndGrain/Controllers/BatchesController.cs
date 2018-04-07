@@ -23,7 +23,38 @@ namespace AmberAndGrain.Controllers
                 return Request.CreateResponse(HttpStatusCode.Created);    
             }
 
-            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Sorry about your luck, shmuck");
+            return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Sorry about your luck, batch");
         }
+
+        [Route("{batchId}/mash"), HttpPatch]
+        public HttpResponseMessage MashBatch(int batchId)
+        {
+            var repository = new BatchRepository();
+            Batch batch;
+
+            try 
+            {
+                batch = repository.Get(batchId);
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.NotFound, "batchId does not exist");
+            }
+
+            if (batch.Status == BatchStatus.Created) 
+            {
+                batch.Status = BatchStatus.Mashed;
+                var result = repository.Update(batch);
+                return result
+                    ? Request.CreateResponse(HttpStatusCode.OK)
+                    : Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "I suk");
+
+            }
+            
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "U suk");
+        }
+
     }
 }
