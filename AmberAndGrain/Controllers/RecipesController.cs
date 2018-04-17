@@ -29,5 +29,13 @@ namespace AmberAndGrain.Controllers
 
         }
 
+        [Route(""), HttpGet]
+        public HttpResponseMessage GetAllRecipes()
+        {
+            var repo = new RecipeRepository();
+            var recipes = repo.GetAll();
+
+            return Request.CreateResponse(HttpStatusCode.OK, recipes);
+        }
     }
 }
