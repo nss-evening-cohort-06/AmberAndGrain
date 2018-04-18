@@ -35,5 +35,56 @@ namespace AmberAndGrain.Services
                 return numberCreated == 1;
             }
         }
+
+        public List<RecipeDto> GetAll()
+        {
+            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            {
+                db.Open();
+
+                var result = db.Query<RecipeDto>("Select * from recipes");
+
+                return result.ToList();
+            }
+        }
+
+        public RecipeDto Get(int id)
+        {
+            using (var db = new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            {
+                db.Open();
+
+                var result = db.QueryFirstOrDefault<RecipeDto>("Select * from recipes where id = @id", new { id });
+
+                return result;
+            }
+        }
+
+        public void Update(int id, RecipeDto recipe)
+        {
+            using (var db =
+                new SqlConnection(ConfigurationManager.ConnectionStrings["AmberAndGrain"].ConnectionString))
+            {
+                db.Open();
+
+                db.Execute(@" Update Recipes
+                              set Name = @Name
+                             ,PercentWheat = @PercentWheat
+                             ,PercentCorn = @PercentCorn
+                             ,BarrelAge = @BarrelAge
+                             ,BarrelMaterial = @BarrelMaterial
+                             ,Creator = @Creator
+                              where id = @id", new
+                {
+                    recipe.name,
+                    recipe.barrelAge,
+                    recipe.barrelMaterial,
+                    recipe.creator,
+                    recipe.percentCorn,
+                    recipe.percentWheat,
+                    id
+                });
+            }
+        }
     }
 }

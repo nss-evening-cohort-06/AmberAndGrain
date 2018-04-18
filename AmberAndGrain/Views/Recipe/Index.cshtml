@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AmberAndGrain.Models.RecipeDto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.percentWheat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.percentCorn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.barrelAge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.barrelMaterial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.creator)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.percentWheat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.percentCorn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.barrelAge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.barrelMaterial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.creator)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { item.Id }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

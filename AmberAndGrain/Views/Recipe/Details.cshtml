@@ -1,0 +1,66 @@
+﻿@model AmberAndGrain.Models.RecipeDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RecipeDto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.percentWheat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percentWheat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.percentCorn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.percentCorn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.barrelAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.barrelAge)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.barrelMaterial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.barrelMaterial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.creator)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.creator)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
